@@ -1,0 +1,36 @@
+// Place all the styles related to the Store controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.store{
+  
+  .entry{
+    margin-top: 1em;
+    min-height: 100px;
+    
+    img{
+      width: 80px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      position: absolute;
+    }
+    
+    .product_description {
+      font-weight: 100;
+      font-size: 12px;
+      text-transform: none;
+      margin-top: 2px;
+    }
+    
+    
+  }
+}
+
+.add-to-cart {
+  .btn-success {
+    height: 35px;
+    padding: 5px;
+    font-weight: 300;
+    font-size: 12px;
+  }
+}

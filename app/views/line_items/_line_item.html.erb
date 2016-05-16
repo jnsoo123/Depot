@@ -1,0 +1,15 @@
+<% if line_item == @current_item %>
+  <li id="current_item" class="list-group-item">
+<% else %>
+  <li class="list-group-item">
+<% end %>
+    <span class="badge" style="background-color: #222;"><%= line_item.quantity %></span>
+    <%= line_item.product.title %>
+    
+    <ul class="list-inline">
+      <li style="min-width: 80px;"><%= number_to_currency(line_item.total_price) %></li>
+      <li><%= button_to '+', line_items_path(product_id: line_item.product, type: 'add'), class: 'btn btn-primary', remote: true %></li>
+      <li><%= button_to '-', line_items_path(product_id: line_item.product, type: 'decrement'), class: 'btn btn-danger', remote: true %></li>
+    </ul>
+  </li>
+  

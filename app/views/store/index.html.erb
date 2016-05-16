@@ -1,0 +1,39 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+Your Catalog
+<div class="store">
+
+<ul class="list-group" style="margin-top: 10px;">
+  
+  
+<% cache ['store', Product.latest] do %>
+  <% @products.each do |product| %>
+    <% cache ['entry', product] do %>
+    <li class="list-group-item">
+      <div class="entry">
+        <div class="row">
+          <div class="col-md-2">
+            <%= image_tag product.image_url, class: 'picture-add' %>
+          </div>
+          <div class="col-md-10">
+            <div class="product_title">
+              <%= product.title %> 
+              <div class="pull-right"><%= number_to_currency(product.price)%></div>
+            </div>
+            <div class="product_description">
+              <%= sanitize(product.description) %>
+              <div class="add-to-cart pull-right" style="margin-top: 5px;"><%= button_to 'Add to Cart', line_items_path(product_id: product, type: 'add'), class: 'btn btn-success',remote: true %></div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </li>
+    <% end %>
+  <% end %>
+<% end %>
+</ul>
+</div>
+

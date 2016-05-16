@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Store</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body id="base">
+  <div id="header">
+    <div class="container-fluid">
+      <nav class="navbar navbar-static-top">
+        <%= link_to 'My Cart Project', store_path, class: 'navbar-brand' %>
+        <ul class="nav navbar-nav">
+          <% if session[:user_id] %>
+            <li><%= link_to 'Admin', admin_path %></li>
+          <% end %>
+          <li><%= link_to 'Home', store_path %></li>
+          <li><a href="#">Questions</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+        <% if session[:user_id] %>
+          <%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-danger pull-right' %>
+        <% else %> 
+        <%= button_to 'Login', login_path, method: :get, class: 'btn btn-primary pull-right' %>
+        <% end %>
+      </nav>
+    </div>
+  </div>
+  <div id="body" class="container">
+    <div class="row">
+      <% if @cart %>
+        <div class="col-md-3">
+          <div id="cart">
+            <%= render @cart %>
+          </div>
+        </div>
+      <% end %>
+      
+      <div class="<%= @cart ? 'col-md-9' : 'col-md-12' %>">
+         <%= yield %>
+      </div>
+      
+      
+<!--
+      <div class="col-md-2">
+        <% if @cart %>
+          <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+            <%= render @cart %>
+          <% end %>
+        <% end %>
+
+        <% if session[:user_id] %>
+          <ul>
+            <li><%= link_to 'Orders', orders_path %></li>
+            <li><%= link_to 'Products', products_path %></li>
+            <li><%= link_to 'Users', users_path %></li>
+          </ul>
+        <% end %>
+      </div>
+-->
+    </div>
+  </div>
+
+</body>
+</html>

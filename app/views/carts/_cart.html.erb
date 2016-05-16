@@ -1,0 +1,18 @@
+Your Cart
+<% unless @cart.line_items.empty? %>
+
+  <ul class="list-group" style="margin-top: 10px;">
+    <%= render(@cart.line_items) %>
+    <li class="list-group-item">
+      Total: <%= number_to_currency(@cart.total_price) %>
+    </li>
+  </ul>
+
+  <%= button_to 'Checkout', new_order_path, method: :get, class: 'btn btn-success', style: 'width: 100%; margin-bottom: 5px;'%>
+  <%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', style: 'width: 100%' %>
+<% else %>
+  <ul class="list-group" style="margin-top: 10px;">
+    <li class="list-group-item">Your Cart is Empty.</li>
+  </ul>
+
+<% end %>

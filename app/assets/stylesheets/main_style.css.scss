@@ -1,0 +1,110 @@
+html, body{
+  
+  height: 100%;
+    
+}
+
+
+//buttons
+
+
+.btn {
+    padding: 14px 24px; 
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+}
+
+.btn-success{
+  color: #fff;
+  background-color: #34b3a0;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-success {
+    background: #2ea190;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
+
+.btn-small{
+  width: 65px;
+  padding: 5px; 
+  height: 30px;
+  font-weight: 500;
+  font-size: 14px;
+}
+#header a, a:visited{
+  color: #fff!important;
+}
+
+#header a:hover {
+  background-color: #06425C!important;
+  color: #222!important;
+}
+
+//++++++++++++++++++++++++++++++ Main ++++++++++++++++++++++++++++++++++++
+
+#base {
+  
+  background-color: #222;
+  height: 100%;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  #header {
+    
+    height: 75px;
+    background-color: #06425C;
+    margin-bottom: 25px;
+    
+  }
+  
+  #body{
+    
+    
+  }
+  
+  .navbar {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 12px;
+  }
+  
+  ul.list-group li, div.list-group a{
+    background-color: #06425C;
+  }
+  
+  .list-inline { 
+    .btn {
+      width: 25px;
+      height: 25px;
+      margin: 0;
+      padding: 0;
+      letter-spacing: 0px;
+      border: 2px solid #fff;
+    }
+  }
+  
+}
+
+

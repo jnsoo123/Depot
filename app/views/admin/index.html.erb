@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <%= link_to 'Orders', orders_path, class: 'list-group-item' %>
+        <%= link_to 'Products', products_path, class: 'list-group-item' %>
+        <%= link_to 'Users', users_path, class: 'list-group-item' %>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div>Welcome</div>
+
+      It's <%= Time.now %>
+      We have <%= pluralize(@total_orders, "order") %>
+    </div>
+  </div>
+</div>
+
+
