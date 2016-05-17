@@ -7,27 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body id="base">
-  <div id="header">
-    <div class="container-fluid">
-      <nav class="navbar navbar-static-top">
-        <%= link_to 'My Cart Project', store_path, class: 'navbar-brand' %>
-        <ul class="nav navbar-nav">
-          <% if session[:user_id] %>
-            <li><%= link_to 'Admin', admin_path %></li>
-          <% end %>
-          <li><%= link_to 'Home', store_path %></li>
-          <li><a href="#">Questions</a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-        <% if session[:user_id] %>
-          <%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-danger pull-right' %>
-        <% else %> 
-        <%= button_to 'Login', login_path, method: :get, class: 'btn btn-primary pull-right' %>
+  
+  
+  
+  <div id = "header" class="container-fluid">
+    <nav class="navbar navbar-static-top">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'My Cart Project', store_path, class: 'navbar-brand' %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to 'Admin', admin_path %></li>
         <% end %>
-      </nav>
-    </div>
+        <li><%= link_to 'Home', store_path %></li>
+        <li><a href="#">Questions</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+      <% if user_signed_in? %>
+        <%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-danger pull-right' %>
+      <% else %>
+        <%= button_to 'Login', login_path, method: :get, class: 'btn btn-primary pull-right' %>
+      <% end %>
+    </nav>
   </div>
+
+  
   <div id="body" class="container">
     <div class="row">
       <% if @cart %>
@@ -37,12 +40,12 @@
           </div>
         </div>
       <% end %>
-      
+
       <div class="<%= @cart ? 'col-md-9' : 'col-md-12' %>">
          <%= yield %>
       </div>
-      
-      
+
+
 <!--
       <div class="col-md-2">
         <% if @cart %>

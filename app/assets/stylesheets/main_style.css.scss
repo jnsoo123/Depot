@@ -73,9 +73,11 @@ html, body{
   
   #header {
     
-    height: 75px;
-    background-color: #06425C;
-    margin-bottom: 25px;
+//    height: 75px;
+//    background-color: #06425C;
+//    margin-bottom: 25px;
+//    height: 100%;
+//    padding: 3px;
     
   }
   
@@ -85,9 +87,11 @@ html, body{
   }
   
   .navbar {
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 12px;
+//    margin-left: 50px;
+//    margin-right: 50px;
+//    margin-top: 12px;
+    padding: 15px;
+    margin-bottom: 0;
   }
   
   ul.list-group li, div.list-group a{
@@ -104,6 +108,17 @@ html, body{
       border: 2px solid #fff;
     }
   }
+  
+  div#header.container-fluid{
+//    height: 75px;
+    background-color: #06425C;
+    width: 100%;
+    padding: none;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+
   
 }
 

@@ -6,13 +6,12 @@ Your Catalog
 <div class="store">
 
 <ul class="list-group" style="margin-top: 10px;">
-  
-  
+
 <% cache ['store', Product.latest] do %>
   <% @products.each do |product| %>
     <% cache ['entry', product] do %>
     <li class="list-group-item">
-      <div class="entry">
+      <div class="entry" style="margin-bottom: 20px;">
         <div class="row">
           <div class="col-md-2">
             <%= image_tag product.image_url, class: 'picture-add' %>
@@ -34,6 +33,9 @@ Your Catalog
     <% end %>
   <% end %>
 <% end %>
+  
+  <%= will_paginate @products, page_links: true %>
+  
 </ul>
 </div>
 
