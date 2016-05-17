@@ -1,0 +1,23 @@
+<div class="container" style="width: 50%; background-color: #444; border-radius: 20px; padding: 20px; margin-top: 20px;">
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Create Product Category', class: 'btn btn-primary', style: 'width: 100%;' %>
+  </div>
+<% end %>
+</div>

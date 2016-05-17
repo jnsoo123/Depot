@@ -2,7 +2,15 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-Your Catalog
+<div>
+  <span>Your Catalog</span>
+  <div class="pull-right">
+    <%= form_tag('/search') do %>
+      <%= select_tag :category, options_from_collection_for_select(Category.all,"id","name") %>
+    <%= submit_tag 'Search' , class: 'btn btn-primary', style: 'width: 65px; height: 20px; font-size: 10px; padding: 0;'%>
+    <% end %>
+  </div>
+</div>
 <div class="store">
 
 <ul class="list-group" style="margin-top: 10px;">

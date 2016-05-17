@@ -1,4 +1,6 @@
 Depot::Application.routes.draw do
+  resources :categories
+
   devise_for :users
   get 'admin' => 'admin#index'
   # controller :sessions do
@@ -7,8 +9,12 @@ Depot::Application.routes.draw do
   #   delete 'logout' => :destroy
   # end
 
- get "sessions/create"
- get "sessions/destroy"
+  get "sessions/create"
+  get "sessions/destroy"
+  
+  controller :store do
+    post '/search' => :index
+  end
 
   devise_scope :user do
     get '/login' => 'devise/sessions#new'

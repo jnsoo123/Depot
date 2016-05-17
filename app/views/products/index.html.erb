@@ -5,6 +5,7 @@
     <td>Image</td>
     <td>Title</td>
     <td>Description</td>
+    <td>Category</td>
     <td>Options</td>
   </thead>
     <% @products.each do |product| %>
@@ -12,6 +13,7 @@
         <td><%= image_tag(product.image_url, class: 'list_image') %></td>
         <td style="width: 100px;"><%= product.title %></td>
         <td style="width: 350px;"><%= truncate(strip_tags(product.description), length: 80) %></td>
+        <td style=""><%= product.category.name %></td>
         <td>
           <%= link_to 'Show', product, class: 'btn btn-primary btn-small'%>
           <%= link_to 'Edit', edit_product_path(product), class: 'btn btn-warning btn-small' %> 
