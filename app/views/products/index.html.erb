@@ -1,6 +1,6 @@
 
 <div class="container">
-  <%= link_to '<- Back', admin_path, class: 'btn btn-warning'%>
+  <%= link_to '<i class="glyphicon glyphicon-arrow-left"></i> Back'.html_safe, admin_path, class: 'btn btn-warning'%>
   <div class="pull-right"><%= link_to 'New Product', new_product_path, class: 'btn btn-primary'%></div> 
 </div>
 
@@ -25,7 +25,6 @@
         <td style="width: 350px;"><%= truncate(strip_tags(product.description), length: 80) %></td>
         <td style=""><%= product.category.name %></td>
         <td>
-          <%= link_to 'Show', product, class: 'btn btn-primary btn-small'%>
           <%= link_to 'Edit', edit_product_path(product), class: 'btn btn-warning btn-small' %> 
           <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-small', style: 'width: 90px;' %>
         </td>

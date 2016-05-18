@@ -24,38 +24,39 @@
       <p><%= @order.created_at.strftime("%B %e, %Y - %l:%m %p") %></p>
     </div>
   </div>
-</div>
 
+  <div class="text-center" style="margin-top: 20px; margin-bottom: 20px">Order List</div>
 
-<table class="table">
-  <thead>
-    <td>Book Title</td>
-    <td>Category</td>
-    <td>Description</td>
-    <td>Quantity</td>
-    <td>Price</td>
-    <td>Total Price</td>
-  </thead>
-  <tbody>
-    <% @order.line_items.each do |item| %>
+  <table class="table">
+    <thead>
+      <td>Book Title</td>
+      <td>Category</td>
+      <td>Description</td>
+      <td>Quantity</td>
+      <td>Price</td>
+      <td>Total Price</td>
+    </thead>
+    <tbody>
+      <% @order.line_items.each do |item| %>
+        <tr>
+          <td><%= item.product.title %></td>
+          <td><%= item.product.category.name %></td>
+          <td><%= item.product.description %></td>
+          <td><%= item.quantity %></td>
+          <td><%= number_to_currency(item.product.price) %></td>
+          <td><%= number_to_currency(item.total_price) %></td>
+        </tr>
+      <% end %>
       <tr>
-        <td><%= item.product.title %></td>
-        <td><%= item.product.category.name %></td>
-        <td><%= item.product.description %></td>
-        <td><%= item.quantity %></td>
-        <td><%= number_to_currency(item.product.price) %></td>
-        <td><%= number_to_currency(item.total_price) %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total: </td>
+        <td><%= number_to_currency(@order.total_price) %></td>
       </tr>
-    <% end %>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Total: </td>
-      <td><%= number_to_currency(@order.total_price) %></td>
-    </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
+</div>
 

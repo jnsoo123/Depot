@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery.ui.effect-blind
 //= require jquery_ujs
+//= require bootstrap
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .

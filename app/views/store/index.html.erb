@@ -1,6 +1,8 @@
 <% if notice %>
-<p id="notice"><%= notice %></p>
+<div id="notice" class="alert alert-success"><%= notice %></div>
 <% end %>
+
+
 
 <span>Your Catalog</span>
 <div style="width: 100%; margin-top: 10px;">
@@ -8,43 +10,47 @@
       <div class="form-inline">
         <%= text_field_tag :search, nil, class: 'form-control', placeholder: 'Search Here', style: 'width: 60%;' %>
         <%= select_tag :category, options_from_collection_for_select(Category.all,"id","name"), prompt: 'All', class: 'form-control', style: 'width: 20%;'%>
-        <%= submit_tag 'Search' , class: 'btn btn-primary', style: 'width: 18.4%; height: 34px; font-size: 10px; padding: 0;'%>
+        <%= button_tag(type: 'submit', class: "btn btn-primary", style: 'width: 18.4%; height: 34px; font-size: 12px; padding: 0;') do %>
+          <i class="glyphicon glyphicon-search"></i> Search
+        <% end %>
       </div>
     <% end %>
 </div>
 <div class="store">
+  <% if @products.empty? %>
+    <div class="text-center" style="margin-top: 50px;">No Results Found!</div>
+  <% end %>
+  <ul class="list-group" style="margin-top: 10px;">
 
-<ul class="list-group" style="margin-top: 10px;">
+  <% cache ['store', Product.latest] do %>
+    <% @products.each do |product| %>
+      <% cache ['entry', product] do %>
+      <li class="list-group-item">
+        <div class="entry" style="margin-bottom: 20px;">
+          <div class="row">
+            <div class="col-md-2">
+              <%= image_tag product.image_url, class: 'picture-add' %>
+            </div>
+            <div class="col-md-10">
+              <div class="product_title">
+                <%= product.title %> 
+                <div class="pull-right"><%= number_to_currency(product.price)%></div>
+              </div>
+              <div class="product_description">
+                <%= sanitize(product.description) %>
+                <div class="add-to-cart pull-right" style="margin-top: 5px;"><%= link_to '<i class="glyphicon glyphicon-shopping-cart"></i> Add to Cart'.html_safe, line_items_path(product_id: product, type: 'add'),method: :post, class: 'btn btn-success',remote: true %></div>
+              </div>
+            </div>
+          </div>
 
-<% cache ['store', Product.latest] do %>
-  <% @products.each do |product| %>
-    <% cache ['entry', product] do %>
-    <li class="list-group-item">
-      <div class="entry" style="margin-bottom: 20px;">
-        <div class="row">
-          <div class="col-md-2">
-            <%= image_tag product.image_url, class: 'picture-add' %>
-          </div>
-          <div class="col-md-10">
-            <div class="product_title">
-              <%= product.title %> 
-              <div class="pull-right"><%= number_to_currency(product.price)%></div>
-            </div>
-            <div class="product_description">
-              <%= sanitize(product.description) %>
-              <div class="add-to-cart pull-right" style="margin-top: 5px;"><%= button_to 'Add to Cart', line_items_path(product_id: product, type: 'add'), class: 'btn btn-success',remote: true %></div>
-            </div>
-          </div>
         </div>
-        
-      </div>
-    </li>
+      </li>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
-  
-  <%= will_paginate @products, page_links: true, previous_label: '<< Prev', next_label: 'Next >>', class: 'pull-right pagination' %>
-  
-</ul>
+
+    <%= will_paginate @products, page_links: true, previous_label: '<< Prev', next_label: 'Next >>', class: 'pull-right pagination' %>
+
+  </ul>
 </div>
 

@@ -1,3 +1,4 @@
+<%= link_to '<i class="glyphicon glyphicon-arrow-left"></i> Back'.html_safe, admin_path, class: 'btn btn-warning'%>
 <div class="text-center">User Listing</div>
 
 <div class="container" style="background-color: #444; padding: 20px; margin-top: 20px; border-radius: 20px;">
@@ -24,7 +25,6 @@
         <td><%= user.email %></td>
         <td><%= user.created_at.strftime("%B %e, %Y - %l:%m %p") %></td>
         <td><%= link_to 'Edit', edit_user_registration_path, class: 'btn btn-warning btn-small' %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-small', style: 'width: 90px;' %></td>
       </tr>
     <% end %>
   </tbody>
