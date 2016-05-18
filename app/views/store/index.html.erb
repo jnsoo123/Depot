@@ -2,14 +2,15 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-<div>
-  <span>Your Catalog</span>
-  <div class="pull-right">
-    <%= form_tag('/search') do %>
-      <%= select_tag :category, options_from_collection_for_select(Category.all,"id","name") %>
-    <%= submit_tag 'Search' , class: 'btn btn-primary', style: 'width: 65px; height: 20px; font-size: 10px; padding: 0;'%>
+<span>Your Catalog</span>
+<div style="width: 100%; margin-top: 10px;">
+    <%= form_tag('/search', method: :get) do %>
+      <div class="form-inline">
+        <%= text_field_tag :search, nil, class: 'form-control', placeholder: 'Search Here', style: 'width: 60%;' %>
+        <%= select_tag :category, options_from_collection_for_select(Category.all,"id","name"), prompt: 'All', class: 'form-control', style: 'width: 20%;'%>
+        <%= submit_tag 'Search' , class: 'btn btn-primary', style: 'width: 18.4%; height: 34px; font-size: 10px; padding: 0;'%>
+      </div>
     <% end %>
-  </div>
 </div>
 <div class="store">
 
@@ -42,7 +43,7 @@
   <% end %>
 <% end %>
   
-  <%= will_paginate @products, page_links: true %>
+  <%= will_paginate @products, page_links: true, previous_label: '<< Prev', next_label: 'Next >>', class: 'pull-right pagination' %>
   
 </ul>
 </div>

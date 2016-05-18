@@ -1,9 +1,17 @@
-<div>Category Listing<div class="pull-right"><%= link_to 'New Category', new_category_path, class: 'btn btn-primary' %></div></div>
+
+<div class="container">
+  <%= link_to '<- Back', admin_path, class: 'btn btn-warning'%>
+  <div class="pull-right"><%= link_to 'New Category', new_category_path, class: 'btn btn-primary' %></div>
+</div>
+
+
+<div class="text-center" style="font-size: 20px;">Category Listing</div>
 
 <% if notice %>
   <p id="notice"><%= notice %></p>
 <% end %>
 
+<div class="container" style="background-color: #444; padding: 20px; margin-top: 20px; border-radius: 20px;">
 
 <table class="table">
   <thead>
@@ -27,5 +35,6 @@
   </tbody>
 </table>
 
-<br>
+<%= will_paginate @categories, class: 'pagination pull-right'%>
 
+</div>

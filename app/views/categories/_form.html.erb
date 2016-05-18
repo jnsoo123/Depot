@@ -1,3 +1,4 @@
+<%= link_to '<- Back', categories_path, class: 'btn btn-warning' %>
 <div class="container" style="width: 50%; background-color: #444; border-radius: 20px; padding: 20px; margin-top: 20px;">
 <%= form_for(@category) do |f| %>
   <% if @category.errors.any? %>
@@ -17,7 +18,7 @@
     <%= f.text_field :name, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit 'Create Product Category', class: 'btn btn-primary', style: 'width: 100%;' %>
+    <%= f.submit "#{type} Product Category", class: 'btn btn-primary', style: 'width: 100%;' %>
   </div>
 <% end %>
 </div>

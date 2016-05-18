@@ -1,4 +1,7 @@
-<div>User Listing<div class="pull-right"><%= link_to 'New User', new_user_path, class: 'btn btn-primary' %></div></div>
+<div class="text-center">User Listing</div>
+
+<div class="container" style="background-color: #444; padding: 20px; margin-top: 20px; border-radius: 20px;">
+
 <% if notice %>
 <p id="notice"><%= @notice %></p>
 <% end %>
@@ -7,9 +10,9 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Registered On:</th>
-      <th></th>
-      <th></th>
+      <th>Registered On</th>
+      <th>Email</th>
+      <th>Options</th>
       <th></th>
     </tr>
   </thead>
@@ -18,13 +21,13 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
-        <td style="width: 500px;"><%= user.created_at %></td>
-        <td><%= link_to 'Show', user, class: 'btn btn-primary btn-small' %></td>
-        <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-warning btn-small' %></td>
+        <td><%= user.email %></td>
+        <td><%= user.created_at.strftime("%B %e, %Y - %l:%m %p") %></td>
+        <td><%= link_to 'Edit', edit_user_registration_path, class: 'btn btn-warning btn-small' %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-small', style: 'width: 90px;' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+</div>

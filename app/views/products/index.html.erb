@@ -1,4 +1,14 @@
-<div>Product Listing <div class="pull-right"><%= link_to 'New Product', new_product_path, class: 'btn btn-primary'%></div></div>
+
+<div class="container">
+  <%= link_to '<- Back', admin_path, class: 'btn btn-warning'%>
+  <div class="pull-right"><%= link_to 'New Product', new_product_path, class: 'btn btn-primary'%></div> 
+</div>
+
+
+<div class="text-center" style="font-size: 20px;">Product Listing</div>
+  
+
+<div class="container" style="background-color: #444; padding: 20px; margin-top: 20px; border-radius: 20px;">
 
 <table class="table">
   <thead>
@@ -22,3 +32,6 @@
       </tr>
     <% end %>
 </table>
+  
+<%= will_paginate @products, class: 'pagination pull-right' %>
+</div>

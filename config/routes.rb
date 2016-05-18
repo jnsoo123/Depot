@@ -1,8 +1,15 @@
 Depot::Application.routes.draw do
   resources :categories
-
+  
+  devise_scope :user do
+    get '/login' => 'devise/sessions#new'
+    delete '/logout' => 'devise/sessions#destroy'
+  end
+  
   devise_for :users
   get 'admin' => 'admin#index'
+  
+  
   # controller :sessions do
   #   get 'login' => :new
   #   post 'login' => :create
@@ -13,14 +20,12 @@ Depot::Application.routes.draw do
   get "sessions/destroy"
   
   controller :store do
-    post '/search' => :index
+    get '/search' => :index
   end
 
-  devise_scope :user do
-    get '/login' => 'devise/sessions#new'
-    delete '/logout' => 'devise/sessions#destroy'
-  end
-
+  
+  
+  
   resources :users
 
   resources :orders
@@ -35,6 +40,8 @@ Depot::Application.routes.draw do
   resources :products do
     get :who_bought, on: :member
   end
+  
+#  get '*path' => redirect('/')
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

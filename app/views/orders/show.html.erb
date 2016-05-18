@@ -1,24 +1,61 @@
+
+<%= link_to '<- Back', orders_path, class: 'btn btn-warning' %>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @order.name %>
-</p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @order.address %>
-</p>
+<div class="container" style="background-color: #444; border-radius: 20px; padding: 20px;">
+  <div class="text-center" style="margin-bottom: 20px;">Order Details</div>
+  <div class="row">
+    <div class="col-md-3 col-xs-3">
+      <p><strong>Order ID: </strong></p>
+      <p><strong>Name: </strong></p>
+      <p><strong>Address: </strong></p>
+      <p><strong>Email: </strong></p>
+      <p><strong>Pay Type: </strong></p>
+      <p><strong>Ordered On: </strong></p>
+    </div>
+    <div class="col-md-9 col-xs-9">
+      <p><%= @order.id %></p>
+      <p><%= @order.name %></p>
+      <p><%= @order.address %></p>
+      <p><%= @order.email %></p>
+      <p><%= @order.pay_type %></p>
+      <p><%= @order.created_at.strftime("%B %e, %Y - %l:%m %p") %></p>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @order.email %>
-</p>
 
-<p>
-  <strong>Pay type:</strong>
-  <%= @order.pay_type %>
-</p>
+<table class="table">
+  <thead>
+    <td>Book Title</td>
+    <td>Category</td>
+    <td>Description</td>
+    <td>Quantity</td>
+    <td>Price</td>
+    <td>Total Price</td>
+  </thead>
+  <tbody>
+    <% @order.line_items.each do |item| %>
+      <tr>
+        <td><%= item.product.title %></td>
+        <td><%= item.product.category.name %></td>
+        <td><%= item.product.description %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(item.product.price) %></td>
+        <td><%= number_to_currency(item.total_price) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Total: </td>
+      <td><%= number_to_currency(@order.total_price) %></td>
+    </tr>
+  </tbody>
+</table>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+

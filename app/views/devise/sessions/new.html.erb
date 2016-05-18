@@ -1,10 +1,14 @@
+<% if notice %>
+<%= notice %>
+<% end %>
+
 <div class="text-center">Log In</div>
 
 <div class="container" style="width: 50%;margin-top: 20px; background-color: #444; padding: 20px; border-radius: 20px;">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-group">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, class: 'form-control'%>
+      <%= f.label :username %><br />
+      <%= f.text_field :username, autofocus: true, class: 'form-control'%>
     </div>
 
     <div class="form-group">

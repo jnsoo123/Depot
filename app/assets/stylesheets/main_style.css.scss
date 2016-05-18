@@ -1,7 +1,8 @@
 html, body{
   
   height: 100%;
-    
+  font-family: 'Walkway';
+  
 }
 
 
@@ -61,15 +62,57 @@ html, body{
   color: #222!important;
 }
 
+// +++++++++++++++++++++++++++ Pagination ++++++++++++++++++++++++++++++++++++
+
+.pagination { 
+  padding: 3px;
+  margin: 3px; 
+} 
+.pagination a { 
+  padding: 2px 5px 2px 5px; 
+  margin: 2px; 
+//  border: 1px solid #aaaadd; 
+  text-decoration: none;
+  color: #fff; 
+} 
+.pagination a:hover, .pagination a:active {
+//  border: 1px solid #000099; 
+  color: #007299;
+  background: none;
+} 
+
+.pagination em {
+  font-style: normal;
+  color: #288bb6;
+  text-decoration: underline;
+}
+
+.pagination span.current { 
+  padding: 2px 5px 2px 5px; 
+  margin: 2px; 
+//  border: 1px solid #000099; 
+  font-weight: bold; 
+  background-color: #000099; 
+} 
+.pagination span.disabled { 
+  padding: 2px 5px 2px 5px; 
+  margin: 2px; 
+//  border: 1px solid #eee; 
+  color: #888;
+}
+
+
 //++++++++++++++++++++++++++++++ Main ++++++++++++++++++++++++++++++++++++
+
+
+
 
 #base {
   
   background-color: #222;
   height: 100%;
   color: white;
-  font-weight: 700;
-  text-transform: uppercase;
+//  text-transform: uppercase;
   letter-spacing: 1px;
   
   #header {
@@ -118,6 +161,7 @@ html, body{
     height: auto;
     margin-bottom: 20px;
   }
+  
   
 
   
