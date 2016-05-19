@@ -24,7 +24,7 @@
     </div>
     <div class="">
       <%= f.label :category_id %><br />
-      <%= f.select :category_id, Category.pluck(:name) , prompt: "Select Category", class: 'form-control', selected: f.object.category.name %>
+      <%= f.select :category_id, Category.pluck(:name) , prompt: "Select Category", class: 'form-control', selected: f.object.category.try(:name) %>
     </div>
     <div class="form-group">
       <%= f.label :image_url %>
