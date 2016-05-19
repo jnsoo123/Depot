@@ -17,7 +17,7 @@ class LineItemsController < ApplicationController
 
   # GET /line_items/new
   def new
-    @line_item = LineItem.new
+    @line_item = LineItem.new 
   end
 
   # GET /line_items/1/edit

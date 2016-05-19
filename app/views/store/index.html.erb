@@ -8,8 +8,8 @@
 <div style="width: 100%; margin-top: 10px;">
     <%= form_tag('/search', method: :get) do %>
       <div class="form-inline">
-        <%= text_field_tag :search, nil, class: 'form-control', placeholder: 'Search Here', style: 'width: 60%;' %>
-        <%= select_tag :category, options_from_collection_for_select(Category.all,"id","name"), prompt: 'All', class: 'form-control', style: 'width: 20%;'%>
+        <%= text_field_tag :search, ( @search_field ? @search_field : nil ) , class: 'form-control', placeholder: 'Search Here', style: 'width: 60%;' %>
+        <%= select_tag :category, options_from_collection_for_select(Category.all,"id","name", ( @select_field ? @select_field : nil) ), prompt: 'All', class: 'form-control', style: 'width: 20%;'%>
         <%= button_tag(type: 'submit', class: "btn btn-primary", style: 'width: 18.4%; height: 34px; font-size: 12px; padding: 0;') do %>
           <i class="glyphicon glyphicon-search"></i> Search
         <% end %>
