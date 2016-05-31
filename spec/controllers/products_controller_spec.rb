@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe ProductsController, type: :controller do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:product) { FactoryGirl.create(:product) }
+  let(:user) { create(:user) }
+  let(:product) { create(:product) }
   
   describe "GET #index" do
     context 'logged in' do
@@ -84,18 +84,18 @@ describe ProductsController, type: :controller do
     context 'logged in' do
       before(:each) do
         sign_in user
-        FactoryGirl.create(:product, title: 'test2')
+        create(:product, title: 'test2')
       end
       
       context 'with valid attributes' do
         it 'creates a new product' do
           expect { 
-            post :create, product: FactoryGirl.attributes_for(:product)
+            post :create, product: attributes_for(:product)
             }.to change(Product, :count).by(1)
         end
         
         it 'redirects to new product' do
-          post :create, product: FactoryGirl.attributes_for(:product)
+          post :create, product: attributes_for(:product)
           expect(response).to redirect_to Product.last
         end
       end
@@ -103,12 +103,12 @@ describe ProductsController, type: :controller do
       context 'with invalid attributes' do
         it 'does not create a new product' do
           expect {
-            post :create, product: FactoryGirl.attributes_for(:invalid_product)  
+            post :create, product: attributes_for(:invalid_product)  
             }.to_not change(Product, :count)
         end
         
         it 're-renders the :new template' do
-          post :create, product: FactoryGirl.attributes_for(:invalid_product)
+          post :create, product: attributes_for(:invalid_product)
           expect(response).to render_template(:new)
         end
       end
@@ -117,7 +117,7 @@ describe ProductsController, type: :controller do
     
     context 'logged out' do
       it 'redirects to sign in page' do
-        post :create, product: FactoryGirl.attributes_for(:product)
+        post :create, product: attributes_for(:product)
         expect(response).to redirect_to new_user_session_path
       end
     end
@@ -125,26 +125,26 @@ describe ProductsController, type: :controller do
   
   describe "PATCH #update" do
     before(:each) do 
-      @product = FactoryGirl.create(:product, title: 'test3', description: 'test3', image_url: 'test3.gif', price: 15, category_id: 2)
-      FactoryGirl.create(:category, name: 'test2')
-      FactoryGirl.create(:category, name: 'test3')
-      FactoryGirl.create(:category, id: 3, name: 'test4')
+      @product = create(:product, title: 'test3', description: 'test3', image_url: 'test3.gif', price: 15, category_id: 2)
+      create(:category, name: 'test2')
+      create(:category, name: 'test3')
+      create(:category, id: 3, name: 'test4')
     end
     
     context 'logged in' do
       before(:each) do
         sign_in user
-        FactoryGirl.create(:product, title: 'test2')
+        create(:product, title: 'test2')
       end
       
       context 'with valid attributes' do
         it 'locates the requested @product' do
-          put :update, id: @product, product: FactoryGirl.attributes_for(:product)
+          put :update, id: @product, product: attributes_for(:product)
           expect(assigns(:product)).to eq (@product)
         end
         
         it 'changes the @product\'s attributes' do
-          put :update, id: @product, product: FactoryGirl.attributes_for(:product, title: 'test4', description: 'test4', image_url: 'test4.png', price: 14.99, category_id: 3)
+          put :update, id: @product, product: attributes_for(:product, title: 'test4', description: 'test4', image_url: 'test4.png', price: 14.99, category_id: 3)
           @product.reload
           expect(@product.title).to eq('test4')
           expect(@product.description).to eq('test4')
@@ -154,19 +154,19 @@ describe ProductsController, type: :controller do
         end
         
         it 'redirects to updated @product' do
-          put :update, id: @product, product: FactoryGirl.attributes_for(:product)
+          put :update, id: @product, product: attributes_for(:product)
           expect(response).to redirect_to @product
         end
       end
       
       context 'with invalid attributes' do
         it 'locates the requested @product' do
-          put :update, id: @product, product: FactoryGirl.attributes_for(:invalid_product)
+          put :update, id: @product, product: attributes_for(:invalid_product)
           expect(assigns(:product)).to eq (@product)
         end
         
         it 'does not change the @product\'s attributes' do
-          put :update, id: @product, product: FactoryGirl.attributes_for(:product, title: nil, description: 'test4', image_url: 'test3.doc', price: "asd", category_id: 3)
+          put :update, id: @product, product: attributes_for(:product, title: nil, description: 'test4', image_url: 'test3.doc', price: "asd", category_id: 3)
           @product.reload
           expect(@product.title).to eq('test3')
           expect(@product.description).to_not eq('test4')
@@ -176,7 +176,7 @@ describe ProductsController, type: :controller do
         end
         
         it 're-renders the edit template' do
-          put :update, id: @product, product: FactoryGirl.attributes_for(:invalid_product)
+          put :update, id: @product, product: attributes_for(:invalid_product)
           expect(response).to render_template(:edit)
         end
       end
@@ -184,14 +184,14 @@ describe ProductsController, type: :controller do
     
     context 'logged out' do
       it 'redirects to sign in page' do
-        put :update, id: @product, product: FactoryGirl.attributes_for(:product)
+        put :update, id: @product, product: attributes_for(:product)
         expect(response).to redirect_to new_user_session_path
       end
     end
   end
   
   describe "DELETE #destroy" do
-    before(:each) { @product = FactoryGirl.create(:product) }
+    before(:each) { @product = create(:product) }
     context 'logged in' do
       before(:each) { sign_in user }
       

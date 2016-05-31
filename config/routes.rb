@@ -1,5 +1,4 @@
 Depot::Application.routes.draw do
-  resources :categories
   
   devise_scope :user do
     get '/login' => 'devise/sessions#new'
@@ -25,6 +24,7 @@ Depot::Application.routes.draw do
 
   
   
+  resources :categories
   
   resources :users
 

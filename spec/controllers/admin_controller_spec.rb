@@ -3,11 +3,11 @@ require 'rails_helper'
 describe AdminController, type: :controller do
   describe 'GET #index' do
     context 'logged in' do
-      before(:each) { sign_in FactoryGirl.create(:user) }
+      before(:each) { sign_in create(:user) }
       
       it 'gets number of orders' do
-        line_item = [FactoryGirl.create(:carted_line_item)]
-        FactoryGirl.create(:order, line_items: line_item)
+        line_item = [create(:carted_line_item)]
+        create(:order, line_items: line_item)
         get :index
         expect(assigns(:total_orders)).to eq(1)
       end

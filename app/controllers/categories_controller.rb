@@ -22,19 +22,13 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    
-#    respond_with(@category)
-#    redirect_to categories_path, notice: "Category Created!"
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to categories_path, notice: 'Category Created!' }
-      end
-    end
+    @category.save
+    respond_with(@category, location: categories_path)
   end
 
   def update
     @category.update(category_params)
-    respond_with(@category)
+    respond_with(@category, location: categories_path)
   end
 
   def destroy

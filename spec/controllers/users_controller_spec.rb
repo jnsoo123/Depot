@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe UsersController, type: :controller do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { create(:user) }
   
   describe "GET #index" do
     context 'logged in' do

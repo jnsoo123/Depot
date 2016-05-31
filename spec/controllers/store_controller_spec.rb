@@ -1,27 +1,58 @@
 require 'rails_helper'
 
 describe StoreController, type: :controller do
-  describe "GET index" do
-    it 'renders the index' do
-      get :index
-      expect(response).to be_success
-    end
-  end
-  
-  describe "POST index" do
-    it 'renders the index template with title and category searching' do
-      post :index, search: 'ruby', category: 1
-      expect(response).to be_success
+  describe "GET #index" do
+    context 'when there\'s no search' do
+      before :each do
+        create :product
+        get :index
+      end
+      
+      it { expect(response).to render_template :index }
+      it { expect(assigns(:products).pluck(:id)).to eq(Product.pluck(:id)) }
     end
     
-    it 'renders the index template with title searching only' do
-      post :index, search: 'ruby', category: nil
-      expect(response).to be_success
+    context 'when there\'s no search and no category' do
+      before :each do
+        create :product
+        get :index, { search: '', category: '' }
+      end
+      
+      it { expect(response).to redirect_to store_path }
     end
     
-    it 'renders the index template with category searching only' do
-      post :index, search: nil, category: 1
-      expect(response).to be_success
+    context 'when there\'s a search with no category' do
+      before :each do 
+        create :product
+        create :product, title: 'Hehehe', category_id: 2
+        get :index, { search: 'test', category: '' }
+      end
+      
+      it { expect(response).to render_template :index }
+      it { expect(assigns(:products).pluck(:id)).to eq([Product.find_by(title: 'test').id]) }
     end
+    
+    context 'when there\'s no search with a category' do
+      before :each do 
+        create :product
+        create :product, title: 'Hehehe', category_id: 2
+        get :index, { search: '', category: 1 }
+      end
+      
+      it { expect(response).to render_template :index }
+      it { expect(assigns(:products).pluck(:id)).to eq([Product.find_by(category_id: 1).id]) }
+    end
+    
+    context 'when there\'s a search with a category' do
+      before :each do
+        create :product
+        create :product, title: 'Hehehe', category_id: 2
+        get :index, { search: 'test', category: 1 }
+      end
+      
+      it { expect(response).to render_template :index }
+      it { expect(assigns(:products).pluck(:id)).to eq([Product.find_by(title: 'test', category_id: 1).id]) }
+    end
+    
   end
 end

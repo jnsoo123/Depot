@@ -1,6 +1,8 @@
 FactoryGirl.define do
+  sequence(:name) { |n| "test#{n}" }
+  
   factory :category do
-    name 'test'
+    name
   end
   
   factory :invalid_category, parent: :category do
