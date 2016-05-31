@@ -30,7 +30,12 @@ Depot::Application.routes.draw do
 
   resources :orders
 
-  resources :line_items
+#  resources :line_items
+  
+  controller :line_items do
+    post 'line_items' => 'line_items#create'
+    delete 'line_items' => :destroy
+  end
 
   resources :carts
 
@@ -41,7 +46,7 @@ Depot::Application.routes.draw do
     get :who_bought, on: :member
   end
   
-#  get '*path' => redirect('/')
+  get '*path' => redirect('/')
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

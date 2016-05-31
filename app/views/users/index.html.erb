@@ -13,8 +13,6 @@
       <th>Name</th>
       <th>Registered On</th>
       <th>Email</th>
-      <th>Options</th>
-      <th></th>
     </tr>
   </thead>
 
@@ -24,7 +22,6 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.created_at.strftime("%B %e, %Y - %l:%m %p") %></td>
-        <td><%= link_to 'Edit', edit_user_registration_path, class: 'btn btn-warning btn-small' %></td>
       </tr>
     <% end %>
   </tbody>

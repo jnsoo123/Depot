@@ -4,7 +4,6 @@ class StoreController < ApplicationController
   before_action :set_cart
   
   def index
-    
     if params[:search] || params[:category]
       if params[:search] == '' and params[:category] == ''
         redirect_to store_path
@@ -22,9 +21,5 @@ class StoreController < ApplicationController
     else
       @products = Product.paginate(page: params[:page], per_page: 5)
     end
-    
-    
   end
-  
-  
 end

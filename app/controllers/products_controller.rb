@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :set_category, only: [:create]
+  before_action :set_category, only: [:create, :update]
 
   # GET /products
   # GET /products.json
@@ -21,13 +21,14 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    @category = @product.category_id
   end
 
   # POST /products
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    @product.category_id = @category.id unless @category == nil
+    @product.category_id = @category.id
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -42,6 +43,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    @product.category_id = @category.id
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
@@ -85,8 +87,8 @@ class ProductsController < ApplicationController
     end
 
     def set_category
-      if Category.find_by(name: params[:product][:category_id])
-        @category = Category.find_by(name: params[:product][:category_id])
+      if Category.find(params[:product][:category_id])
+        @category = Category.find(params[:product][:category_id])
       else
         @category = nil
       end

@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    respond_with(@category)
+    redirect_to categories_path
   end
 
   def new

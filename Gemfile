@@ -40,7 +40,17 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
 # Use ActiveModel has_secure_password
- gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+group :development, :test do
+  gem "rspec"
+  gem "rspec-rails"
+  gem "webrat"
+  gem 'factory_girl_rails'
+end
+
+
+gem 'rspec-activemodel-mocks'
 
 # Use unicorn as the app server
 # gem 'unicorn'
