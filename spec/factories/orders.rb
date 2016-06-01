@@ -1,12 +1,15 @@
 FactoryGirl.define do
+  
   factory :order do
-    name 'test'
+    name
     address 'test'
     email 'test@test.com'
     pay_type 'Check'
-    
-    before(:create) do |order|
-      create(:carted_line_item, order_id: order.id, cart_id: nil )  
-    end
+  end
+  
+  factory :invalid_order, parent: :order do
+    name nil
+    address nil
+    email 'test'
   end
 end

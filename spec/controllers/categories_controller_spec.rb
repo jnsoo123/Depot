@@ -169,7 +169,7 @@ describe CategoriesController, type: :controller do
         @category = create(:category)
       end
       
-      it 'deletes the chosen product' do
+      it 'deletes the chosen category' do
         expect { delete :destroy, id: @category }.to change(Category, :count).by(-1)
       end
       
