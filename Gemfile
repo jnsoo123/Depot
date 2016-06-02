@@ -39,14 +39,19 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'chromedriver-helper'
 
 group :development, :test do
   gem "rspec"
   gem "rspec-rails"
   gem "webrat"
   gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 

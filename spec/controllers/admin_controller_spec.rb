@@ -6,8 +6,7 @@ describe AdminController, type: :controller do
       before(:each) { sign_in create(:user) }
       
       it 'gets number of orders' do
-        line_item = [create(:carted_line_item)]
-        create(:order, line_items: line_item)
+        create(:order, line_items: [create(:carted_line_item)])
         get :index
         expect(assigns(:total_orders)).to eq(1)
       end

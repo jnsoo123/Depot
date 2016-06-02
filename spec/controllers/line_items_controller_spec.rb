@@ -11,15 +11,16 @@ describe LineItemsController, type: :controller do
     context 'when cart is not empty' do
       context 'when adding a product' do
         context 'when product is same' do
-          it 'does not create a new line_item' do
+          before(:each) do 
             create(:carted_line_item, product_id: 1)
             create(:product, id: 1)
+          end
+          
+          it 'does not create a new line_item' do
             expect { post :create, { product_id: 1, type: 'add' } }.to change(LineItem, :count).by(0) 
           end
           
           it 'increments the current line_items\' quantity' do
-            create(:carted_line_item, product_id: 1)
-            create(:product, id: 1)
             expect { post :create, { product_id: 1, type: 'add' } }.to change{ LineItem.last.quantity }.by(1) 
           end
         end

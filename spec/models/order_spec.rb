@@ -30,6 +30,15 @@ describe Order do
   end
   
   describe 'methods' do
+    context 'add_line_items_from_cart' do
+      it 'transfers items from cart to line_items' do
+        order = build(:order)
+        cart = create(:cart, line_items: [create(:carted_line_item)])
+        order.add_line_items_from_cart(cart)
+        expect(order.line_items).to eq(cart.line_items)
+      end
+    end
+    
     context 'total_price' do
       it 'gets the total price of whole order' do
         create(:product, id: 1, title: 'test', price: 20)

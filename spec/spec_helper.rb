@@ -19,6 +19,13 @@
 
 require 'factory_girl_rails'
 require 'support/factory_girl'
+require 'capybara/rspec'
+require 'selenium-webdriver'
+require 'support/database_cleaner'
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

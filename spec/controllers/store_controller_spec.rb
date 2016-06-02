@@ -23,7 +23,7 @@ describe StoreController, type: :controller do
     
     context 'when there\'s a search with no category' do
       before :each do 
-        create :product
+        create :product, title: 'test'
         create :product, title: 'Hehehe', category_id: 2
         get :index, { search: 'test', category: '' }
       end
@@ -34,7 +34,7 @@ describe StoreController, type: :controller do
     
     context 'when there\'s no search with a category' do
       before :each do 
-        create :product
+        create :product, category_id: 1
         create :product, title: 'Hehehe', category_id: 2
         get :index, { search: '', category: 1 }
       end
@@ -45,7 +45,7 @@ describe StoreController, type: :controller do
     
     context 'when there\'s a search with a category' do
       before :each do
-        create :product
+        create :product, title: 'test', category_id: 1
         create :product, title: 'Hehehe', category_id: 2
         get :index, { search: 'test', category: 1 }
       end
