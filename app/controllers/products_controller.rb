@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
   end
-
+  #asdasd
   # GET /products/new
   def new
     @product = Product.new
@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def who_bought
     @product = Product.find(params[:id])
     @latest_order = @product.orders.order(:updated_at).last
@@ -93,7 +93,7 @@ class ProductsController < ApplicationController
         @category = nil
       end
     end
-  
- 
-  
+
+
+
 end
